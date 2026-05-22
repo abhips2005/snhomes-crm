@@ -1,0 +1,552 @@
+Build a production-ready Progressive Web App (PWA) called "S N Homes".
+
+Goal:
+S N Homes is NOT a normal real estate listing website.
+It acts as a real estate agency / property matchmaking platform for Kerala.
+
+Users should only submit simple forms.
+All operations happen inside an internal admin CRM.
+
+Tech Stack:
+- Frontend: Next.js 15 (App Router, TypeScript)
+- Styling: Tailwind CSS
+- Backend: Supabase
+- Database: Supabase
+- ORM: Supabase
+- Auth: Admin login only initially
+- Storage: Supabase
+- State: TanStack Query
+- Forms: React Hook Form + Zod
+- Notifications: WhatsApp integration placeholder
+- Deployable via Docker (Also in vercel)
+- PWA enabled (installable)
+
+Architecture:
+Frontend:
+apps/web
+
+Backend:
+apps/api
+
+Shared:
+packages/types
+
+Goal:
+Build V1 only.
+
+====================================
+USER SIDE (NO LOGIN)
+====================================
+
+Users should NOT create accounts.
+
+Users only interact through forms.
+
+Routes:
+
+/
+Landing page
+
+/buy
+Buy/Rent Requirement Form
+
+/sell
+Sell Property Form
+
+/success
+Submission confirmation
+
+/track
+Track request
+
+------------------------------------
+HOME PAGE
+------------------------------------
+
+Minimal premium Kerala style.
+
+Hero:
+
+S N HOMES
+Find. Match. Move In.
+
+Two large CTA cards:
+
+[ BUY / RENT PROPERTY ]
+
+[ SELL PROPERTY ]
+
+Subtitle:
+
+Get matched within 48 hours*
+*If matching properties / buyers are available.
+
+Show:
+- Verified Opportunities
+- Genuine Buyers & Sellers
+- Local Experts
+- Fast Response
+
+Buttons:
+Register Requirement
+
+Footer:
+Call
+WhatsApp
+Privacy
+
+------------------------------------
+BUY / RENT FLOW
+------------------------------------
+
+Form fields:
+
+name
+phone
+district
+locality
+property_type
+preferred pincode (optional)
+
+Property Types:
+house
+villa
+plot
+apartment
+commercial
+
+budget_min
+budget_max
+
+timeline
+
+Values:
+immediately
+1 month
+3 months
+just exploring
+
+notes
+
+Submit
+
+On submit:
+
+Create lead.
+
+Generate request id:
+
+SNH-000001
+
+Redirect:
+
+SUCCESS PAGE
+
+Message:
+
+Requirement Received
+
+We'll get back within 48 hours.
+
+Show:
+Request ID
+
+Back Home
+
+------------------------------------
+SELL PROPERTY FLOW
+------------------------------------
+
+Fields:
+
+name
+phone
+district
+locality
+pincode
+property_type
+asking_price
+photos (optional)
+notes/details
+Submit.
+
+Create:
+Lead
+Property Draft
+
+Generate Request ID.
+
+Success page.
+
+------------------------------------
+TRACK REQUEST
+------------------------------------
+
+Fields:
+phone
+request id
+
+Return:
+
+Status
+
+Possible values:
+
+Received
+Reviewing
+Matching
+Contacted
+Site Visit
+Closed
+
+====================================
+ADMIN SIDE
+====================================
+
+Route:
+
+/admin
+
+Admin Login Required (Supabase)
+
+Roles:
+
+Super Admin
+
+------------------------------------
+ADMIN DASHBOARD
+------------------------------------
+
+Cards:
+
+New Leads - on clicking it should show the list and details on clicking each lead for both buy/rent and sell
+Open Leads
+Hot Leads
+Properties
+Matches
+Visits
+Closed Deals
+
+Charts:
+
+Leads by Source
+District Demand
+Lead Conversion
+
+Recent Activity Feed
+
+------------------------------------
+LEADS MODULE
+------------------------------------
+
+Table:
+
+lead_id
+name
+phone
+type
+
+buyer
+seller
+tenant
+landlord
+
+district
+locality
+pincode
+
+budget
+
+source
+
+status
+
+priority
+
+created_at
+
+Actions:
+
+Open
+Edit
+Assign
+Call
+WhatsApp
+Archive
+
+Lead statuses:
+
+New
+Contacted
+Qualified
+Matching
+Shortlisted
+Site Visit
+Negotiation
+Closed
+Lost
+
+Lead Details Screen:
+
+Profile
+
+Notes
+
+Timeline
+
+Activity
+
+Call Log
+
+Next Followup
+
+Property Matches
+
+Add Note
+
+Schedule Followup
+
+Schedule Visit
+
+------------------------------------
+PROPERTY MODULE
+------------------------------------
+
+Property statuses:
+
+Draft
+Pending
+Verified
+Live
+Sold
+Inactive
+
+Fields:
+
+property_id
+seller
+location
+type
+price
+district
+area
+pincode
+photos
+description
+
+Actions:
+
+Approve
+Edit
+Verify
+Archive
+Match
+
+Property Detail Page:
+
+Overview
+Photos
+Matches
+Activity
+
+------------------------------------
+MATCHING MODULE
+------------------------------------
+
+Core feature.
+
+Algorithm:
+
+Match by:
+
+district
+locality
+pincode
+budget
+type
+
+Show:
+
+Match Score
+
+0–100
+
+Actions:
+
+Send Match - WhatsApp shareable
+Match to lead (if matched , should show in the lead details)
+Save
+Reject
+
+Matching page:
+
+Left:
+Lead
+
+Right:
+Suggested Properties
+
+------------------------------------
+FOLLOWUPS MODULE
+------------------------------------
+
+Views:
+
+Today
+Upcoming
+Overdue
+
+Fields:
+
+lead
+date
+note
+outcome
+
+Outcome:
+
+No Answer
+Interested
+Later
+Visit Scheduled
+Closed
+
+------------------------------------
+SITE VISITS
+------------------------------------
+
+Fields:
+
+lead
+property
+date
+time
+
+status
+
+Scheduled
+Completed
+Cancelled
+
+Actions:
+
+Confirm
+Reschedule
+Complete
+
+------------------------------------
+ACTIVITY LOG
+------------------------------------
+
+Track:
+
+Lead Created
+Property Added
+Status Changed
+Visit Scheduled
+
+------------------------------------
+ANALYTICS
+------------------------------------
+
+Show:
+
+Lead Count
+Conversion
+Response Time
+
+------------------------------------
+SETTINGS
+------------------------------------
+
+Districts
+
+Property Types
+
+Lead Status
+
+WhatsApp
+
+Branding
+
+====================================
+DATABASE
+====================================
+
+Tables:
+
+admins
+
+leads
+
+properties
+
+property_photos
+
+matches
+
+followups
+
+visits
+
+activities
+
+settings
+
+Use proper relations.
+
+====================================
+PWA
+====================================
+
+Requirements:
+
+Installable
+
+Offline shell
+
+Fast mobile load
+
+Manifest
+
+Service Worker
+
+====================================
+UX
+====================================
+
+Premium Kerala real estate feel.
+
+Colors:
+Deep Green
+Gold
+White
+
+Rounded / Square cards.
+
+Fast.
+
+Mobile-first.
+
+Minimal.
+
+No unnecessary pages.
+
+====================================
+OUTPUT
+====================================
+
+Generate:
+
+1. Full project structure
+2. DB schema
+3. Backend APIs
+4. Frontend pages
+5. Components
+6. Admin dashboard
+7. Seed data
+8. Docker setup
+9. README
+10. Local setup instructions
+
+Build V1 end-to-end.
