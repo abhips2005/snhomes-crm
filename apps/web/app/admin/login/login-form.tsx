@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Brand } from "@/components/brand";
@@ -35,7 +36,9 @@ export function AdminLoginForm() {
       <section className="w-full max-w-5xl overflow-hidden rounded-3xl border border-cloud/80 bg-white shadow-card">
         <div className="grid lg:grid-cols-[0.95fr_1.05fr]">
           <aside className="hidden bg-gradient-to-br from-forest via-leaf to-[#39ad8d] p-8 text-white lg:block">
-            <p className="text-xs font-bold uppercase tracking-[0.16em] text-gold">S N Homes</p>
+            <div className="inline-flex rounded-xl bg-white/95 p-3 shadow-sm">
+              <Image src="/logo.png" alt="S N Homes" width={160} height={48} className="h-10 w-auto object-contain" />
+            </div>
             <h2 className="mt-4 text-4xl font-extrabold leading-tight">Welcome back, Admin.</h2>
             <p className="mt-4 text-sm leading-relaxed text-white/85">
               Manage leads, matching, followups, visits, and reporting from one modern CRM workspace built for field and office teams.

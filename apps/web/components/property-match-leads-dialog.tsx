@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { X } from "lucide-react";
 import type { PropertyRow } from "@/lib/admin-data";
 import { formatBudgetRange } from "@/lib/admin-data";
@@ -25,6 +26,12 @@ type PropertyMatchLeadsDialogProps = {
 };
 
 export function PropertyMatchLeadsDialog({ property, candidates, redirectPath, onClose }: PropertyMatchLeadsDialogProps) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   useEffect(() => {
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
@@ -33,10 +40,14 @@ export function PropertyMatchLeadsDialog({ property, candidates, redirectPath, o
     };
   }, []);
 
-  return (
-    <>
-      <button type="button" aria-label="Close match dialog" className="fixed inset-0 z-[120] bg-ink/45" onClick={onClose} />
-      <div className="fixed inset-x-4 top-[8vh] z-[130] mx-auto max-h-[84vh] w-full max-w-2xl overflow-hidden rounded-3xl border border-cloud bg-white shadow-soft">
+  const dialog = (
+    <div className="fixed inset-0 z-[130] flex items-center justify-center p-4 sm:p-6">
+      <button type="button" aria-label="Close match dialog" className="absolute inset-0 bg-ink/45" onClick={onClose} />
+      <div
+        role="dialog"
+        aria-modal="true"
+        className="relative z-10 flex max-h-[min(84dvh,720px)] w-full max-w-2xl flex-col overflow-hidden rounded-3xl border border-cloud bg-white shadow-soft"
+      >
         <div className="flex items-center justify-between border-b border-cloud px-5 py-4">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.14em] text-leaf">Match to lead</p>
@@ -82,6 +93,9 @@ export function PropertyMatchLeadsDialog({ property, candidates, redirectPath, o
           )}
         </div>
       </div>
-    </>
+    </div>
   );
+
+  if (!mounted) return null;
+  return createPortal(dialog, document.body);
 }

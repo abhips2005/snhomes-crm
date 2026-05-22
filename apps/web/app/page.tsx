@@ -60,7 +60,7 @@ export default function HomePage() {
             <div className="rounded-2xl border border-white/30 bg-white/10 p-6 text-white backdrop-blur-sm">
               <p className="text-xs font-bold uppercase tracking-[0.14em] text-gold">Hot Zones</p>
               <div className="mt-3 flex flex-wrap gap-2 text-xs font-bold uppercase tracking-wide text-white/95">
-                {["Kottayam", "Eranakulam", "Idukki", "Pala", "Thodupuzha"].map((zone) => (
+                {["Kottayam", "Eranakulam", "Ramapuram", "Thodupuzha", "Pala", "Idukki"].map((zone) => (
                   <span key={zone} className="rounded-full border border-white/35 px-3 py-1.5">
                     {zone}
                   </span>

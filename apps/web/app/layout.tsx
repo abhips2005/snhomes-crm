@@ -11,6 +11,10 @@ export const metadata: Metadata = {
   description: "Kerala real estate matchmaking for genuine buyers, sellers, tenants, and landlords.",
   applicationName: "S N Homes",
   manifest: "/manifest.webmanifest",
+  icons: {
+    icon: "/logo.png",
+    apple: "/logo.png"
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",

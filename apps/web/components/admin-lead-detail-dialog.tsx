@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { X } from "lucide-react";
 import type { LeadPropertyMatch, LeadRow } from "@/lib/admin-data";
 import { formatBudgetRange, formatCurrency } from "@/lib/admin-data";
@@ -41,6 +42,11 @@ export function AdminLeadDetailDialog({ lead, followups, activities: initialActi
   const [activities, setActivities] = useState(initialActivities);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const prev = document.body.style.overflow;
@@ -98,14 +104,21 @@ export function AdminLeadDetailDialog({ lead, followups, activities: initialActi
     window.open(`https://wa.me/91${lead.phone}`, "_blank", "noopener,noreferrer");
   }
 
-  return (
-    <>
-      <button type="button" aria-label="Close lead details" className="fixed inset-0 z-[120] bg-ink/45" onClick={onClose} />
-      <div className="fixed inset-x-4 top-[6vh] z-[130] mx-auto flex max-h-[88vh] w-full max-w-4xl flex-col overflow-hidden rounded-3xl border border-cloud bg-white shadow-soft sm:inset-x-auto">
+  const dialog = (
+    <div className="fixed inset-0 z-[130] flex items-center justify-center p-4 sm:p-6">
+      <button type="button" aria-label="Close lead details" className="absolute inset-0 bg-ink/45" onClick={onClose} />
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="lead-dialog-title"
+        className="relative z-10 flex max-h-[min(88dvh,900px)] w-full max-w-4xl flex-col overflow-hidden rounded-3xl border border-cloud bg-white shadow-soft"
+      >
         <div className="flex shrink-0 items-center justify-between border-b border-cloud px-5 py-4">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.14em] text-leaf">{lead.request_id}</p>
-            <h2 className="text-2xl font-black text-forest">{lead.name}</h2>
+            <h2 id="lead-dialog-title" className="text-2xl font-black text-forest">
+              {lead.name}
+            </h2>
           </div>
           <button type="button" onClick={onClose} className="grid h-10 w-10 place-items-center rounded-lg border border-cloud text-forest hover:bg-cream">
             <X size={20} />
@@ -247,6 +260,9 @@ export function AdminLeadDetailDialog({ lead, followups, activities: initialActi
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
+
+  if (!mounted) return null;
+  return createPortal(dialog, document.body);
 }
