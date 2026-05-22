@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { formatCurrency, getPropertyById } from "@/lib/admin-data";
+import { PropertyPhotoUpload } from "@/components/property-photo-upload";
+import { formatCurrency, getPropertyById, getPropertyPhotos } from "@/lib/admin-data";
 
 const statuses = ["Draft", "Pending", "Verified", "Live", "Sold", "Inactive"];
 
@@ -15,6 +16,7 @@ export default async function PropertyDetailPage({
   const query = await searchParams;
   const property = await getPropertyById(id);
   if (!property) notFound();
+  const photos = await getPropertyPhotos(property.id);
 
   return (
     <div className="space-y-6">
@@ -114,6 +116,8 @@ export default async function PropertyDetailPage({
           </form>
         </section>
       </div>
+
+      <PropertyPhotoUpload propertyId={property.id} initialPhotos={photos} />
     </div>
   );
 }

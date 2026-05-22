@@ -137,3 +137,4 @@ create policy "authenticated admin read followups" on followups for select using
 create policy "authenticated admin read visits" on visits for select using (exists (select 1 from admins where admins.id = auth.uid()));
 create policy "authenticated admin read activities" on activities for select using (exists (select 1 from admins where admins.id = auth.uid()));
 create policy "authenticated admin read settings" on settings for select using (exists (select 1 from admins where admins.id = auth.uid()));
+create policy "authenticated admin read property_photos" on property_photos for select using (exists (select 1 from admins where admins.id = auth.uid()));

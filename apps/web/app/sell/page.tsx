@@ -55,9 +55,9 @@ export default function SellPage() {
           <Field label="Asking Price" error={form.formState.errors.asking_price}>
             <input className="field" type="number" {...form.register("asking_price")} />
           </Field>
-          <Field label="Photos (optional)">
-            <input className="field" type="file" multiple accept="image/*" disabled title="Supabase storage hook placeholder for V1" />
-          </Field>
+          <p className="text-sm text-slate sm:col-span-2">
+            You can share up to 3 property photos with our team after submit (via call/WhatsApp). Our CRM stores compressed listing photos for buyers.
+          </p>
           <div className="sm:col-span-2">
             <Field label="Notes / Details" error={form.formState.errors.notes}>
               <textarea className="field min-h-32" {...form.register("notes")} />

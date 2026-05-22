@@ -1,6 +1,15 @@
 import { rankLeadsForProperty, rankPropertiesForLead } from "@/lib/admin-matches";
 import { isRequirementLead } from "@/lib/matching";
+import { getPropertyPhotoPublicUrl } from "@/lib/property-photos";
 import { getServiceClientOrThrow } from "@/lib/server";
+
+export type PropertyPhotoRow = {
+  id: string;
+  storage_path: string;
+  sort_order: number;
+  created_at: string;
+  url: string | null;
+};
 
 const PROPERTY_SELECT =
   "id, property_id, seller_lead_id, type, status, price, district, locality, area, pincode, description, bedrooms, bathrooms, sqft, land_area, additional_notes, created_at, updated_at";
@@ -129,6 +138,22 @@ export async function getPropertyById(id: string) {
     ...data,
     seller: Array.isArray(data.seller) ? (data.seller[0] ?? null) : (data.seller ?? null)
   } as PropertyRow;
+}
+
+export async function getPropertyPhotos(propertyId: string) {
+  const supabase = getServiceClientOrThrow();
+  const { data, error } = await supabase
+    .from("property_photos")
+    .select("id, storage_path, sort_order, created_at")
+    .eq("property_id", propertyId)
+    .order("sort_order", { ascending: true })
+    .order("created_at", { ascending: true });
+  if (error) throw new Error(error.message);
+
+  return (data ?? []).map((photo) => ({
+    ...photo,
+    url: getPropertyPhotoPublicUrl(photo.storage_path)
+  })) as PropertyPhotoRow[];
 }
 
 export async function getLeadPropertyMatches(lead: LeadRow, properties: PropertyRow[]) {
