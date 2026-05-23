@@ -28,9 +28,6 @@ export default function HomePage() {
               S N Homes
               <span className="block text-gold">Match. Visit. Move.</span>
             </h1>
-            <p className="mt-5 max-w-2xl text-lg font-medium leading-relaxed text-white/90">
-              A modern Kerala-first real-estate platform with an internal CRM for buyers, sellers, tenants, landlords, and field agents.
-            </p>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
               <Link href="/buy" className="group rounded-2xl border border-white/30 bg-white/15 p-6 backdrop-blur-sm transition hover:-translate-y-1 hover:bg-white/20">
@@ -51,6 +48,7 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
+          
 
           <aside className="relative z-10 space-y-4">
             <div className="rounded-2xl border border-white/30 bg-white/95 p-6 text-ink shadow-soft">
@@ -70,7 +68,7 @@ export default function HomePage() {
               </div>
             </div>
             <p className="px-1 text-sm font-medium leading-relaxed text-white/85">
-              Designed for Kerala market behavior: locality-first screening, verified lead quality, and fast follow-up loops.
+              Designed for Kerala market behavior: locality-first screening, verified lead quality, and fast follow-up loops. 
             </p>
           </aside>
         </div>
