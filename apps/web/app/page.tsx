@@ -22,7 +22,7 @@ export default function HomePage() {
         <div className="kerala-hero mt-6 grid gap-10 p-8 lg:grid-cols-[1.1fr_0.9fr] lg:p-12">
           <div className="relative z-10">
             <p className="kerala-chip">
-              <BadgeCheck size={16} className="text-gold" /> Trusted across Kerala districts
+              <BadgeCheck size={16} className="text-gold" /> കോട്ടയം ,പാലാ , രാമപുരം ഏരിയയിൽ ആണെങ്കിൽ 24 മണിക്കൂറിനുള്ളിൽ മറുപടി
             </p>
             <h1 className="mt-5 text-5xl font-extrabold leading-tight sm:text-6xl">
               S N Homes
@@ -35,14 +35,16 @@ export default function HomePage() {
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
               <Link href="/buy" className="group rounded-2xl border border-white/30 bg-white/15 p-6 backdrop-blur-sm transition hover:-translate-y-1 hover:bg-white/20">
                 <span className="text-xs font-bold uppercase tracking-[0.16em] text-gold">Buy / Rent</span>
-                <span className="mt-3 block text-2xl font-black">Register Requirement</span>
+                <span className="mt-3 block text-2xl font-black">സ്ഥലം/വസ്തു ആവശ്യം ഉണ്ട് </span>
+                <span className="mt-1 block text-sm text-white/80">Register Requirement</span>
                 <span className="mt-6 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-white/90">
                   Get matched <ArrowRight className="transition group-hover:translate-x-1" size={18} />
                 </span>
               </Link>
               <Link href="/sell" className="group rounded-2xl border border-white/30 bg-white/15 p-6 backdrop-blur-sm transition hover:-translate-y-1 hover:bg-white/20">
                 <span className="text-xs font-bold uppercase tracking-[0.16em] text-gold">Sell Property</span>
-                <span className="mt-3 block text-2xl font-black">Get Verified Buyers</span>
+                <span className="mt-3 block text-2xl font-black">സ്ഥലം/വസ്തു വിൽക്കാൻ ഉണ്ട് </span>
+                <span className="mt-1 block text-sm text-white/80">Get Verified Buyers</span>
                 <span className="mt-6 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-white/90">
                   Submit property <ArrowRight className="transition group-hover:translate-x-1" size={18} />
                 </span>

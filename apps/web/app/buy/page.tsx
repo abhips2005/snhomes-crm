@@ -31,35 +31,34 @@ export default function BuyPage() {
               Share requirement details and our Kerala team will connect matched options from verified listings and owner leads.
             </p>
             <div className="mt-8 space-y-3 text-sm font-semibold text-white/90">
-              <p>1. Register locality and budget</p>
-              <p>2. Receive curated matches</p>
-              <p>3. Track follow-up and visit status</p>
+              <p>താഴെ കൊടുത്തിരിക്കുന്ന ഫോം സമർപ്പിച്ചു 48 മണിക്കൂറിനകം ഞങ്ങൾ നിങ്ങളുമായി ബന്ധപ്പെടുന്നതാണ്.</p>
+              <p>കോട്ടയം ,പാലാ , രാമപുരം ഏരിയയിൽ ആണെങ്കിൽ 24 മണിക്കൂറിനുള്ളിൽ മറുപടി</p>
             </div>
           </aside>
 
           <form className="surface-card grid gap-6 rounded-3xl p-8 sm:grid-cols-2" onSubmit={form.handleSubmit((values) => mutation.mutate(values))}>
-          <Field label="Name" error={form.formState.errors.name}>
+          <Field label="Name (പേര്)" error={form.formState.errors.name}>
             <input className="field" {...form.register("name")} />
           </Field>
-          <Field label="Phone" error={form.formState.errors.phone}>
+          <Field label="Phone (മൊബൈൽ നം)" error={form.formState.errors.phone}>
             <input className="field" inputMode="tel" {...form.register("phone")} />
           </Field>
-          <SelectField label="District" error={form.formState.errors.district} options={DISTRICTS.map((value) => ({ label: value, value }))} {...form.register("district")} />
-          <Field label="Locality" error={form.formState.errors.locality}>
+          <SelectField label="District (ജില്ല)" error={form.formState.errors.district} options={DISTRICTS.map((value) => ({ label: value, value }))} {...form.register("district")} />
+          <Field label="Locality (സ്ഥലം)" error={form.formState.errors.locality}>
             <input className="field" {...form.register("locality")} />
           </Field>
-          <SelectField label="Property Type" error={form.formState.errors.property_type} options={PROPERTY_TYPES.map((value) => ({ label: value, value }))} {...form.register("property_type")} />
-          <Field label="Preferred Pincode (optional)" error={form.formState.errors.preferred_pincode}>
+          <SelectField label="Property Type (വസ്തുവിന്റെ തരം)" error={form.formState.errors.property_type} options={PROPERTY_TYPES.map((value) => ({ label: value, value }))} {...form.register("property_type")} />
+          <Field label="Preferred Pincode (പിന്കോഡ്) (optional)" error={form.formState.errors.preferred_pincode}>
             <input className="field" inputMode="numeric" {...form.register("preferred_pincode")} />
           </Field>
-          <Field label="Budget Min" error={form.formState.errors.budget_min}>
+          <Field label="Budget Min (കുറഞ്ഞ വില)" error={form.formState.errors.budget_min}>
             <input className="field" type="number" {...form.register("budget_min")} />
           </Field>
-          <Field label="Budget Max" error={form.formState.errors.budget_max}>
+          <Field label="Budget Max (പരമാവധി വില)" error={form.formState.errors.budget_max}>
             <input className="field" type="number" {...form.register("budget_max")} />
           </Field>
-          <SelectField label="Timeline" error={form.formState.errors.timeline} options={TIMELINES.map((value) => ({ label: value, value }))} {...form.register("timeline")} />
-          <Field label="Notes" error={form.formState.errors.notes}>
+          <SelectField label="Timeline (വാങ്ങാൻ ഉദ്ദേശിക്കുന്ന സമയം)" error={form.formState.errors.timeline} options={TIMELINES.map((value) => ({ label: value, value }))} {...form.register("timeline")} />
+          <Field label="Notes (വിവരങ്ങൾ)" error={form.formState.errors.notes}>
             <textarea className="field min-h-28" {...form.register("notes")} />
           </Field>
           {mutation.error ? <p className="text-sm font-semibold text-ember sm:col-span-2">{mutation.error.message}</p> : null}
