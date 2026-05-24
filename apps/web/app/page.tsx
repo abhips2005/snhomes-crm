@@ -20,7 +20,7 @@ export default function HomePage() {
             href="https://wa.me/917994516565"
             target="_blank"
             rel="noreferrer"
-            className="absolute left-[55%] top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-1.5 rounded-xl border border-[#25D366]/25 bg-white/95 px-2.5 py-1.5 text-[11px] sm:text-sm font-bold text-[#25D366] shadow-sm transition hover:border-[#25D366]/50 hover:bg-white lg:hidden whitespace-nowrap"
+            className="absolute left-[57%] top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-1.5 rounded-xl border border-[#25D366]/25 bg-white/95 px-2.5 py-1.5 text-[11px] sm:text-sm font-bold text-[#25D366] shadow-sm transition hover:border-[#25D366]/50 hover:bg-white lg:hidden whitespace-nowrap"
           >
             <MessageCircle size={16} />
             <span>WhatsApp : 7994516565</span>
