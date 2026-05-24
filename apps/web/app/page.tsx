@@ -1,4 +1,4 @@
-import { ArrowRight, BadgeCheck, Clock, MapPin, ShieldCheck, Users } from "lucide-react";
+import { ArrowRight, BadgeCheck, Clock, MapPin, ShieldCheck, Users, MessageCircle } from "lucide-react";
 import Link from "next/link";
 import { Brand } from "@/components/brand";
 import { LandingNav } from "@/components/landing-nav";
@@ -14,8 +14,17 @@ export default function HomePage() {
   return (
     <main className="min-h-screen bg-kerala-wave">
       <section className="page-wrap pt-8">
-        <header className="flex items-center justify-between gap-3 py-4">
+        <header className="relative flex items-center justify-between gap-3 py-4">
           <Brand />
+          <a
+            href="https://wa.me/917994516565"
+            target="_blank"
+            rel="noreferrer"
+            className="absolute left-[55%] top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-1.5 rounded-xl border border-[#25D366]/25 bg-white/95 px-2.5 py-1.5 text-[11px] sm:text-sm font-bold text-[#25D366] shadow-sm transition hover:border-[#25D366]/50 hover:bg-white lg:hidden whitespace-nowrap"
+          >
+            <MessageCircle size={16} />
+            <span>WhatsApp : 7994516565</span>
+          </a>
           <LandingNav />
         </header>
 

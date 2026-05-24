@@ -1,6 +1,6 @@
 "use client";
 
-import { Menu, X } from "lucide-react";
+import { Menu, MessageCircle, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -31,6 +31,15 @@ export function LandingNav() {
   return (
     <div className="flex shrink-0 items-center justify-end">
       <nav className="hidden items-center gap-2 lg:flex">
+        <a
+          href="https://wa.me/917994516565"
+          target="_blank"
+          rel="noreferrer"
+          className="flex items-center gap-2 rounded-xl border border-[#25D366]/25 bg-white/90 px-4 py-2 text-sm font-bold text-[#25D366] transition hover:border-[#25D366]/50 hover:bg-white"
+        >
+          <MessageCircle size={18} />
+          <span>79945 16565</span>
+        </a>
         {navLinks.map((link) => (
           <Link
             key={link.href}
@@ -62,6 +71,7 @@ export function LandingNav() {
               onClick={() => setOpen(false)}
             />
             <nav className="absolute right-0 top-full z-50 mt-2 min-w-[12rem] overflow-hidden rounded-2xl border border-cloud bg-white shadow-card">
+
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
